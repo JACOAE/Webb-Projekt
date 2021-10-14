@@ -13,25 +13,25 @@
     grid-gap: 1px;
   }
   .header{
-    background-color: grey;
+    background-color: lightskyblue;
     text-align: center;
     font-size: 25px;
     padding: 25px;
   }
   .menu{
-    background-color: red;
+    background-color: lightskyblue;
     text-align: center;
     font-size: 25px;
     padding: 25px;
   }
   .main{
-    background-color: green;
+    background-color: lightskyblue;
     text-align: center;
     font-size: 25px;
     padding: 25px;
   }
   .footer{
-    background-color: blue;
+    background-color: lightskyblue;
     text-align: center;
     font-size: 25px;
     padding: 25px;
