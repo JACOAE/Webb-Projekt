@@ -97,10 +97,10 @@ class GetSports extends React.Component {
         } else {
             return (
                 <ul>
-                {sports.map(sport => (
-                    <li key={sport.id}>
+                {sports.map(sport => ( //Skriver ut sporten och kör funktionen GayAlert när list itemet klickas på
+                    <a onClick={()=> GayAlert()}><li key={sport.id}>
                       {sport.name}
-                    </li>
+                    </li></a>
                   ))}
                 </ul>
             );
@@ -109,13 +109,16 @@ class GetSports extends React.Component {
 
 }
 
+function GayAlert() {
+    alert("gay");
+}
 
 class Site extends React.Component {
     render() {
         return (
             <div className="grid-container">
                 <div className="header">
-                    <h1>Monkeysports</h1>
+                    <h1>Monkey Sports</h1>
                 </div>
 
                 <div className="menu_container">
