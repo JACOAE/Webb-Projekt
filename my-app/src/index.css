@@ -8,7 +8,7 @@
     grid-template-areas:
       'header header header header header header'
       'menu main main main main main'
-      'menu footer footer footer footer footer';
+      'footer footer footer footer footer footer';
     background-color: #2196F3;
     grid-gap: 1px;
   }
