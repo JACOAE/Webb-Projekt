@@ -109,8 +109,9 @@ class GetSports extends React.Component {
 
 }
 
+//kom ihåg att ta bort denna
 function GayAlert() {
-    alert("gay");
+    alert("ur mom gay");
 }
 
 class Site extends React.Component {
