@@ -1,51 +1,39 @@
-body {
-    font: 14px "Century Gothic", Futura, sans-serif;
-    margin: 20px;
+.header { grid-area: header; }
+.menu { grid-area: menu; }
+.main { grid-area: main; }
+.footer { grid-area: footer; }
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+      'header header header header header header'
+      'menu main main main main main'
+      'menu footer footer footer footer footer';
+    background-color: #2196F3;
+    grid-gap: 1px;
   }
-  
-  ol, ul {
-    padding-left: 30px;
-  }
-  
-  .board-row:after {
-    clear: both;
-    content: "";
-    display: table;
-  }
-  
-  .status {
-    margin-bottom: 10px;
-  }
-  
-  .square {
-    background: #fff;
-    border: 1px solid #999;
-    float: left;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 34px;
-    height: 34px;
-    margin-right: -1px;
-    margin-top: -1px;
-    padding: 0;
+  .header{
+    background-color: lightskyblue;
     text-align: center;
-    width: 34px;
+    font-size: 25px;
+    padding: 25px;
   }
-  
-  .square:focus {
-    outline: none;
+  .menu{
+    background-color: lightskyblue;
+    text-align: center;
+    font-size: 25px;
+    padding: 25px;
   }
-  
-  .kbd-navigation .square:focus {
-    background: #ddd;
+  .main{
+    background-color: lightskyblue;
+    text-align: center;
+    font-size: 25px;
+    padding: 25px;
   }
-  
-  .game {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .game-info {
-    margin-left: 20px;
+  .footer{
+    background-color: lightskyblue;
+    text-align: center;
+    font-size: 25px;
+    padding: 25px;
   }
   
