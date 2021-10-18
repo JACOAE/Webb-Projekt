@@ -43,19 +43,58 @@ class Board extends React.Component {
     }
 }
 
-class Menu extends React.Component {
-    render() {
-        return (
-            <div className="menu_container">
-                <h2>Ligor</h2>
-                <h2>Lag</h2>
-            </div>
-        );
-    }
-}
 
-class getLeagues extends React.Component {
-    
+
+class GetTeams extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            error: null,
+            isLoaded: false,
+            items: []
+        };
+    }
+
+    componentDidMount() {
+        fetch("http://api.everysport.com/v1/teams?apikey=26192887ec48f76ab54167238ae16688")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        teams: result.teams
+                    });
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+    }
+
+    render() {
+        const { error, isLoaded, teams } = this.state;
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <div>Loading...</div>;
+        } else {
+            return (
+                <ul>
+                    {teams.map(team => (
+                        <li key={team.id}>
+                            {team.name}
+                        </li>
+                    ))}
+                </ul>
+            );
+        }
+    }
 
 }
 
@@ -80,6 +119,14 @@ class Site extends React.Component {
                     Footer
                 </div>
             </div>
+        );
+    }
+}
+
+class Menu extends React.Component {
+    render() {
+        return (
+            <GetTeams />
         );
     }
 }
