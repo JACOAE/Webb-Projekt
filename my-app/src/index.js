@@ -14,7 +14,7 @@ class GetTeams extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://api.everysport.com/v1/teams?apikey=26192887ec48f76ab54167238ae16688")
+        fetch("http://api.everysport.com/v1/teams?sport=apikey=26192887ec48f76ab54167238ae16688")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -111,8 +111,15 @@ class GetSports extends React.Component {
 
 //kom ihåg att ta bort denna; nej
 function GayAlert(sportid) {
-        
+    alert(sportid);
+    const element = <GetTeams />;
+    ReactDOM.render(element, document.getElementById('menu_container'));
 }
+
+
+
+
+
 
 class Site extends React.Component {
     render() {
