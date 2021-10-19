@@ -119,7 +119,7 @@ class Site extends React.Component {
         return (
             <div id="grid-container">
                 <div id="header">
-                    <img src="img/logo.jpg"></img>
+                    <img src="img/logoB.png"></img>
                 </div>
 
                 <div id="menu_container">
