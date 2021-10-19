@@ -38,6 +38,9 @@
   font-size: 25px;
   padding: 25px;
 }
+#headerLogo{
+  width: 15rem;
+}
 ul {
   list-style-type: none;
   text-align: center;
