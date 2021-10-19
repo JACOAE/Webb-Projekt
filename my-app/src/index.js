@@ -111,26 +111,26 @@ class GetSports extends React.Component {
 
 //kom ihåg att ta bort denna; nej
 function GayAlert(sportid) {
-
+        
 }
 
 class Site extends React.Component {
     render() {
         return (
-            <div className="grid-container">
-                <div className="header">
+            <div id="grid-container">
+                <div id="header">
                     <img src="img/logo.jpg"></img>
                 </div>
 
-                <div className="menu_container">
+                <div id="menu_container">
                     <Menu />
                 </div>
 
-                <div className="main">
+                <div id="main">
                     Main
                 </div>
 
-                <div className="footer">
+                <div id="footer">
                     Footer
                 </div>
             </div>

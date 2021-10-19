@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
 
-.header { grid-area: header; }
-.menu { grid-area: menu; }
-.main { grid-area: main; }
-.footer { grid-area: footer; }
+#header { grid-area: header; }
+#menu { grid-area: menu; }
+#main { grid-area: main; }
+#footer { grid-area: footer; }
 
-.grid-container {
+#grid-container {
   display: grid;
   grid-template-areas:
     'header header header header header header'
@@ -14,25 +14,25 @@
   background-color: #2196F3;
   grid-gap: 1px;
 }
-.header{
+#header{
   background-color: lightskyblue;
   text-align: center;
   font-size: 25px;
   padding: 25px;
 }
-.menu{
+#menu{
   background-color: lightskyblue;
   text-align: center;
   font-size: 25px;
   padding: 25px;
 }
-.main{
+#main{
   background-color: lightskyblue;
   text-align: center;
   font-size: 25px;
   padding: 25px;
 }
-.footer{
+#footer{
   background-color: lightskyblue;
   text-align: center;
   font-size: 25px;
