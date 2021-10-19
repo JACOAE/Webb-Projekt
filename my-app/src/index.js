@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-
+import Logo from './img/logo.jpg';
 
 class GetTeams extends React.Component {
     constructor(props) {
@@ -119,7 +119,7 @@ class Site extends React.Component {
         return (
             <div id="grid-container">
                 <div id="header">
-                    <img src="img/logo.jpg"></img>
+                    <img src={Logo} alt="Monkeysports"></img>
                 </div>
 
                 <div id="menu_container">
