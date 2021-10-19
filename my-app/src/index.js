@@ -98,7 +98,7 @@ class GetSports extends React.Component {
             return (
                 <ul>
                 {sports.map(sport => ( //Skriver ut sporten och kör funktionen GayAlert när list itemet klickas på
-                    <a onClick={()=> GayAlert()}><li key={sport.id}>
+                    <a onClick={()=> GayAlert(sport.id)}><li key={sport.id}>
                       {sport.name}
                     </li></a>
                   ))}
@@ -109,28 +109,28 @@ class GetSports extends React.Component {
 
 }
 
-//kom ihåg att ta bort denna
-function GayAlert() {
-    alert("ur mom gay");
+//kom ihåg att ta bort denna; nej
+function GayAlert(sportid) {
+        
 }
 
 class Site extends React.Component {
     render() {
         return (
-            <div className="grid-container">
-                <div className="header">
-                    <h1>Monkey Sports</h1>
+            <div id="grid-container">
+                <div id="header">
+                    <img src="img/logo.jpg"></img>
                 </div>
 
-                <div className="menu_container">
+                <div id="menu_container">
                     <Menu />
                 </div>
 
-                <div className="main">
+                <div id="main">
                     Main
                 </div>
 
-                <div className="footer">
+                <div id="footer">
                     Footer
                 </div>
             </div>
