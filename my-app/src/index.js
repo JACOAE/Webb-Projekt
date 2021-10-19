@@ -44,6 +44,7 @@ class GetTeams extends React.Component {
         } else {
             return (
                 <ul>
+                    <h2>Välj ett lag:</h2>
                 {teams.map(team => (
                     <li key={team.id}>
                       {team.name}
@@ -97,6 +98,7 @@ class GetSports extends React.Component {
         } else {
             return (
                 <ul>
+                    <h2>Välj en sport:</h2>
                 {sports.map(sport => ( //Skriver ut sporten och kör funktionen GayAlert när list itemet klickas på
                     <a onClick={()=> GayAlert(sport.id)}><li key={sport.id}>
                       {sport.name}
