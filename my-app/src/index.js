@@ -99,7 +99,7 @@ class GetSports extends React.Component {
             return (
                 <ul>
                     <h2>Välj en sport:</h2>
-                {sports.map(sport => ( //Skriver ut sporten och kör funktionen GayAlert när list itemet klickas på
+                {sports.map(sport => ( //Skriver ut sporten och kör funktionen clickSports när list itemet klickas på
                     <a onClick={()=> clickSports(sport.id)}><li key={sport.id}>
                       {sport.name}
                     </li></a>
