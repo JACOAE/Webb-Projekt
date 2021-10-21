@@ -3,8 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Logo from './img/logoB.png';
 
-class GetTeams extends React.Component {
-    constructor(props) {
+var sportIDChosen = 0;
+var teamIDChosen = 0;
+
+
+class GetTeamInfo extends React.Component {
+    constructor(props,sportid) {
         super(props);
         this.state = {
             error: null,
@@ -14,7 +18,54 @@ class GetTeams extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://api.everysport.com/v1/teams?apikey=26192887ec48f76ab54167238ae16688")
+        fetch("http://api.everysport.com/v1/teams/"+teamIDChosen+"?apikey=26192887ec48f76ab54167238ae16688")      
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        team: result.team
+                    });
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+    }
+
+    render() {
+        const { error, isLoaded, team } = this.state;
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <div>Loading...</div>;
+        } else {
+            return (    
+                team.name
+            );
+        }
+    }
+
+}
+
+class GetTeams extends React.Component {
+    constructor(props,sportid) {
+        super(props);
+        this.state = {
+            error: null,
+            isLoaded: false,
+            items: []
+        };
+    }
+
+    componentDidMount() {
+        fetch("http://api.everysport.com/v1/teams?apikey=26192887ec48f76ab54167238ae16688"+"&sport="+sportIDChosen)      
             .then(res => res.json())
             .then(
                 (result) => {
@@ -46,9 +97,9 @@ class GetTeams extends React.Component {
                 <ul>
                     <h2>Välj ett lag:</h2>
                 {teams.map(team => (
-                    <li key={team.id}>
-                      {team.name}
-                    </li>
+                    <a onClick={()=> clickTeams(team.id)}><li key={team.id}>
+                    {team.name}
+                  </li></a>
                   ))}
                 </ul>
             );
@@ -113,13 +164,16 @@ class GetSports extends React.Component {
 
 //kom ihåg att ta bort denna; nej
 function clickSports(sportid) {
-    alert(sportid);
-    const element = <GetTeams />;
+    sportIDChosen = sportid;
+    const element = <GetTeams />
     ReactDOM.render(element, document.getElementById('menu_container'));
 }
 
-
-
+function clickTeams(teamid){
+    teamIDChosen = teamid;
+    const element = <GetTeamInfo />
+    ReactDOM.render(element, document.getElementById("main"))
+}
 
 
 
