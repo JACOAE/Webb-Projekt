@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Logo from './img/logoB.png';
@@ -68,11 +68,11 @@ class GetTeamInfo extends React.Component {
             return <div>{this.state.statement}</div>;
         } else {
             return (
-                <GetTeams setTeamId ={this.setTeamId} />
-
-
-                //team.name
-            );
+                <div>
+                    <h1>{team.name}</h1>
+                    <img src={team.logo} alt="Lagets logga" height="200"/>
+                </div>
+            )
         }
     }
 
@@ -86,6 +86,7 @@ class GetTeams extends React.Component {
             isLoaded: false,
             items: []
         };
+        this.handleBack=this.handleBack.bind(this);
     }
 
     componentDidMount() {
@@ -109,7 +110,9 @@ class GetTeams extends React.Component {
                 }
             )
     }
-
+    handleBack(){
+        this.props.history.goBack();
+    }
     render() {
         const { error, isLoaded, teams } = this.state;
         if (error) {
@@ -175,7 +178,7 @@ class GetSports extends React.Component {
                 <ul>
                     <h2>Välj en sport:</h2>
                     {sports.map(sport => ( //Skriver ut sporten och kör funktionen clickSports när list itemet klickas på
-                        <a onClick={() => clickSports(sport.id)}><li key={sport.id}>
+                        <a href="#" onClick={() => clickSports(sport.id)}><li key={sport.id}>
                             {sport.name}
                         </li></a>
                     ))}
@@ -209,7 +212,7 @@ class Site extends React.Component {
         return (
             <div id="grid-container">
                 <div id="header">
-                    <img id="headerLogo" src={Logo} alt="Monkeysports"></img>
+                    <a href="#" onClick={()=> window.location.reload()}><img id="headerLogo" src={Logo} alt="Monkeysports"/></a>
                 </div>
 
                 <div id="menu_container">
@@ -229,9 +232,13 @@ class Site extends React.Component {
 }
 
 class Menu extends React.Component {
+    constructor(props){
+        super(props);
+    }
+    
     render() {
         return (
-            <GetSports />
+           <GetSports />
         );
     }
 }
