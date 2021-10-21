@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Logo from './img/logoB.png';
 
-<<<<<<< HEAD
 var sportIDChosen = 0;
 var teamIDChosen = 0;
 
@@ -57,8 +56,6 @@ class GetTeamInfo extends React.Component {
     }
 
 }
-=======
->>>>>>> 2f00592d050ef6be1db90e41f610b0672d49ab22
 
 class GetTeams extends React.Component {
     constructor(props,sportid) {
