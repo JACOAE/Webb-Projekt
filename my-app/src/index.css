@@ -5,6 +5,7 @@
 #main { grid-area: main; }
 #footer { grid-area: footer; }
 
+
 #grid-container {
   display: grid;
   grid-template-areas:
@@ -13,6 +14,9 @@
     'footer footer footer footer footer footer';
   background-color: #2196F3;
   grid-gap: 1px;
+  width: 80%;
+  margin:auto;
+  max-height: 90%;
 }
 #header{
   background-color: lightskyblue;
@@ -20,22 +24,30 @@
   font-size: 25px;
   padding: 25px;
 }
-#menu{
+#menu_container{
   background-color: lightskyblue;
   text-align: center;
   font-size: 25px;
   padding: 25px;
+  overflow: auto;
+  max-height: 38rem;
+  min-width: 8rem;
+  
+
 }
 #main{
   background-color: lightskyblue;
   text-align: center;
   font-size: 25px;
   padding: 25px;
+  min-height: 38rem;
+
 }
 #footer{
   background-color: lightskyblue;
   text-align: center;
-  font-size: 25px;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
   padding: 25px;
 }
 #headerLogo{
@@ -66,4 +78,8 @@ a{
 }
 h2, h1 {
   font-family: 'Lato', sans-serif;
+}
+.teamList{
+  padding-top: 8px;
+  padding-bottom: 8px;
 }

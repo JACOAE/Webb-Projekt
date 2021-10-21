@@ -5,28 +5,25 @@ import Logo from './img/logoB.png';
 
 var sportIDChosen = 0;
 var teamIDChosen = 0;
-var teamInfoElement;
 
 
 class GetTeamInfo extends React.Component {
     constructor(props) {
         super(props);
-       
+
 
         this.state = {
-            statement: this.props.statement,
-
             error: null,
             isLoaded: false,
             items: [],
-            teamID: this.props.teamID
         };
+        
     }
 
-    
+
 
     setTeamId(teamID) {
-        this.teamID = teamID;
+        teamIDChosen = teamID;
     }
 
 
@@ -56,7 +53,7 @@ class GetTeamInfo extends React.Component {
                         });
                     }
                 )
-        }
+        }  
     }
 
 
@@ -65,12 +62,13 @@ class GetTeamInfo extends React.Component {
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
-            return <div>{this.state.statement}</div>;
+            return <div>...Loading</div>;
         } else {
             return (
+                //<GetTeams setTeamId = {this.setTeamId} />
                 <div>
-                    <h1>{team.name}</h1>
-                    <img src={team.logo} alt="Lagets logga" height="200"/>
+                    <h3>{team.name}</h3>
+                    <img src={team.logo} alt="Lagets logga" height="200" />
                 </div>
             )
         }
@@ -86,7 +84,7 @@ class GetTeams extends React.Component {
             isLoaded: false,
             items: []
         };
-        this.handleBack=this.handleBack.bind(this);
+        this.handleBack = this.handleBack.bind(this);
     }
 
     componentDidMount() {
@@ -110,7 +108,7 @@ class GetTeams extends React.Component {
                 }
             )
     }
-    handleBack(){
+    handleBack() {
         this.props.history.goBack();
     }
     render() {
@@ -124,10 +122,20 @@ class GetTeams extends React.Component {
                 <ul>
                     <h2>Välj ett lag:</h2>
                     {teams.map(team => (
+
+                        /* Vår version */
+                        <a href="#" onClick={() => clickTeams(team.id)}><li className="teamList" key={team.id}>
+                            {team.name}
+                        </li></a>
+                        
+
+
+                        /* Åkes Version 
                         <a onClick={() => this.props.setTeamId(team.id)}><li key={team.id}>
                             {team.name}
                         </li></a>
-                    ))};
+                        */
+                    ))}
                 </ul>
             );
         }
@@ -197,12 +205,12 @@ function clickSports(sportid) {
 }
 
 function clickTeams(teamid) {
-    alert(teamid + " clicked!")
     teamIDChosen = teamid;
-    teamInfoElement = <GetTeamInfo teamID = {teamIDChosen}/>
 
-    
-    ReactDOM.render(teamInfoElement, document.getElementById("main"));
+    ReactDOM.unmountComponentAtNode(document.getElementById("main"))
+    var element = <GetTeamInfo />
+
+    ReactDOM.render(element, document.getElementById("main"));
 }
 
 
@@ -212,7 +220,7 @@ class Site extends React.Component {
         return (
             <div id="grid-container">
                 <div id="header">
-                    <a href="#" onClick={()=> window.location.reload()}><img id="headerLogo" src={Logo} alt="Monkeysports"/></a>
+                    <a href="#" onClick={() => window.location.reload()}><img id="headerLogo" src={Logo} alt="Monkeysports" /></a>
                 </div>
 
                 <div id="menu_container">
@@ -220,11 +228,11 @@ class Site extends React.Component {
                 </div>
 
                 <div id="main">
-                    <GetTeamInfo statement='Hello'/>
+                    <Main />
                 </div>
 
                 <div id="footer">
-                    Footer
+                    MonkeySports AB (William Tiderman, Jacob Eriksson och John Engblom)
                 </div>
             </div>
         );
@@ -232,13 +240,13 @@ class Site extends React.Component {
 }
 
 class Menu extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
     }
-    
+
     render() {
         return (
-           <GetSports />
+            <GetSports />
         );
     }
 }
@@ -246,7 +254,7 @@ class Menu extends React.Component {
 class Main extends React.Component {
     render() {
         return (
-            <h3>Välkommen till MonkeySports!</h3>
+            <h2>Välkommen till MonkeySports!</h2>
         )
     }
 }
