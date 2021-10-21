@@ -165,13 +165,14 @@ class GetSports extends React.Component {
 //kom ihåg att ta bort denna; nej
 function clickSports(sportid) {
     sportIDChosen = sportid;
-    const element = <GetTeams />
+    var element = <GetTeams />
     ReactDOM.render(element, document.getElementById('menu_container'));
 }
 
 function clickTeams(teamid){
+    alert(teamid + "clicked!")
     teamIDChosen = teamid;
-    const element = <GetTeamInfo />
+    var element = <GetTeamInfo />
     ReactDOM.render(element, document.getElementById("main"))
 }
 
