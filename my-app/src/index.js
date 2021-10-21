@@ -5,7 +5,7 @@ import Logo from './img/logoB.png';
 
 
 class GetTeams extends React.Component {
-    constructor(props) {
+    constructor(props,sportid) {
         super(props);
         this.state = {
             error: null,
@@ -16,7 +16,7 @@ class GetTeams extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://api.everysport.com/v1/teams?apikey=26192887ec48f76ab54167238ae16688")
+        fetch("http://api.everysport.com/v1/teams?apikey=26192887ec48f76ab54167238ae16688"+"&sport="+sportIDChosen)      
             .then(res => res.json())
             .then(
                 (result) => {
@@ -47,16 +47,14 @@ class GetTeams extends React.Component {
             return <div>Loading...</div>;
         } else {
             return (
-                <><div>
-                    <button onClick={this.handleBack}>Back</button>
-                </div><ul>
-                        <h2>Välj ett lag:</h2>
-                        {teams.map(team => (
-                            <li key={team.id}>
-                                {team.name}
-                            </li>
-                        ))}
-                    </ul></>
+                <ul>
+                    <h2>Välj ett lag:</h2>
+                {teams.map(team => (
+                    <a href="#" onClick={()=> clickTeams(team.id)}><li key={team.id}>
+                    {team.name}
+                  </li></a>
+                  ))}
+                </ul>
             );
         }
     }
@@ -105,8 +103,8 @@ class GetSports extends React.Component {
             return (
                 <ul>
                     <h2>Välj en sport:</h2>
-                    {sports.map(sport => ( //Skriver ut sporten och kör funktionen clickSports när list itemet klickas på
-                    <a onClick={()=> clickSports(sport.id)}><li key={sport.id}>
+                {sports.map(sport => ( //Skriver ut sporten och kör funktionen clickSports när list itemet klickas på
+                    <a href="#" onClick={()=> clickSports(sport.id)}><li key={sport.id}>
                       {sport.name}
                     </li></a>
                   ))}
@@ -119,10 +117,18 @@ class GetSports extends React.Component {
 
 //kom ihåg att ta bort denna; nej
 function clickSports(sportid) {
-    alert(sportid);
-    const element = <GetTeams />;
+    sportIDChosen = sportid;
+    var element = <GetTeams />
     ReactDOM.render(element, document.getElementById('menu_container'));
 }
+
+function clickTeams(teamid){
+    alert(teamid + "clicked!")
+    teamIDChosen = teamid;
+    var element = <GetTeamInfo />
+    ReactDOM.render(element, document.getElementById("main"));
+}
+
 
 
 class Site extends React.Component {
@@ -138,7 +144,7 @@ class Site extends React.Component {
                 </div>
 
                 <div id="main">
-                    Main
+                    <Main />
                 </div>
 
                 <div id="footer">
@@ -158,6 +164,14 @@ class Menu extends React.Component {
         return (
            <GetSports />
         );
+    }
+}
+
+class Main extends React.Component {
+    render() {
+        return(
+            <h3>Välkommen till MonkeySports!</h3>
+        )
     }
 }
 
