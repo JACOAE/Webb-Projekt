@@ -1,7 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Logo from './img/logoB.png';
+
 
 class GetTeams extends React.Component {
     constructor(props) {
@@ -11,6 +12,7 @@ class GetTeams extends React.Component {
             isLoaded: false,
             items: []
         };
+        this.handleBack=this.handleBack.bind(this);
     }
 
     componentDidMount() {
@@ -34,7 +36,9 @@ class GetTeams extends React.Component {
                 }
             )
     }
-
+    handleBack(){
+        this.props.history.goBack();
+    }
     render() {
         const { error, isLoaded, teams } = this.state;
         if (error) {
@@ -43,14 +47,16 @@ class GetTeams extends React.Component {
             return <div>Loading...</div>;
         } else {
             return (
-                <ul>
-                    <h2>Välj ett lag:</h2>
-                {teams.map(team => (
-                    <li key={team.id}>
-                      {team.name}
-                    </li>
-                  ))}
-                </ul>
+                <><div>
+                    <button onClick={this.handleBack}>Back</button>
+                </div><ul>
+                        <h2>Välj ett lag:</h2>
+                        {teams.map(team => (
+                            <li key={team.id}>
+                                {team.name}
+                            </li>
+                        ))}
+                    </ul></>
             );
         }
     }
@@ -99,7 +105,7 @@ class GetSports extends React.Component {
             return (
                 <ul>
                     <h2>Välj en sport:</h2>
-                {sports.map(sport => ( //Skriver ut sporten och kör funktionen clickSports när list itemet klickas på
+                    {sports.map(sport => ( //Skriver ut sporten och kör funktionen clickSports när list itemet klickas på
                     <a onClick={()=> clickSports(sport.id)}><li key={sport.id}>
                       {sport.name}
                     </li></a>
@@ -117,10 +123,6 @@ function clickSports(sportid) {
     const element = <GetTeams />;
     ReactDOM.render(element, document.getElementById('menu_container'));
 }
-
-
-
-
 
 
 class Site extends React.Component {
@@ -148,9 +150,13 @@ class Site extends React.Component {
 }
 
 class Menu extends React.Component {
+    constructor(props){
+        super(props);
+    }
+    
     render() {
         return (
-            <GetSports />
+           <GetSports />
         );
     }
 }

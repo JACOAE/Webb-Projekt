@@ -41,6 +41,7 @@
 #headerLogo{
   width: 15rem;
 }
+
 ul {
   list-style-type: none;
   text-align: center;
@@ -48,15 +49,14 @@ ul {
 }
 li {
   border: 1px black solid;
-  padding: 0.5rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  margin: 0.5rem;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  margin: 10px;
   background-color: lightskyblue;
   text-transform: uppercase;
   color: rgb(48, 48, 48);
   font-family: 'Lato', sans-serif;
-  font-size: 1.1rem;
+  font-size: 16px;
 }
 li:hover {
   background-color: rgb(101, 153, 185);
