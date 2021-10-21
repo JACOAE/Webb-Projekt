@@ -64,6 +64,6 @@ li:hover {
 a{
   text-decoration: none;
 }
-h2 {
+h2, h1 {
   font-family: 'Lato', sans-serif;
 }

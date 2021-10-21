@@ -46,9 +46,12 @@ class GetTeamInfo extends React.Component {
         } else if (!isLoaded) {
             return <div>Loading...</div>;
         } else {
-            return (    
-                team.name
-            );
+            return (
+                <div>
+                    <h1>{team.name}</h1>
+                    <img src={team.logo} alt="Lagets logga" height="200"/>
+                </div>
+            )
         }
     }
 
@@ -183,7 +186,7 @@ class Site extends React.Component {
         return (
             <div id="grid-container">
                 <div id="header">
-                    <img id="headerLogo" src={Logo} alt="Monkeysports"></img>
+                    <a href="#" onClick={()=> window.location.reload()}><img id="headerLogo" src={Logo} alt="Monkeysports"/></a>
                 </div>
 
                 <div id="menu_container">
@@ -213,7 +216,7 @@ class Menu extends React.Component {
 class Main extends React.Component {
     render() {
         return(
-            <h3>Välkommen till MonkeySports!</h3>
+            <h1>Välkommen till MonkeySports!</h1>
         )
     }
 }
