@@ -97,7 +97,7 @@ class GetTeams extends React.Component {
                 <ul>
                     <h2>Välj ett lag:</h2>
                 {teams.map(team => (
-                    <a onClick={()=> clickTeams(team.id)}><li key={team.id}>
+                    <a href="#" onClick={()=> clickTeams(team.id)}><li key={team.id}>
                     {team.name}
                   </li></a>
                   ))}
@@ -151,7 +151,7 @@ class GetSports extends React.Component {
                 <ul>
                     <h2>Välj en sport:</h2>
                 {sports.map(sport => ( //Skriver ut sporten och kör funktionen clickSports när list itemet klickas på
-                    <a onClick={()=> clickSports(sport.id)}><li key={sport.id}>
+                    <a href="#" onClick={()=> clickSports(sport.id)}><li key={sport.id}>
                       {sport.name}
                     </li></a>
                   ))}
