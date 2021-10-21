@@ -173,7 +173,7 @@ function clickTeams(teamid){
     alert(teamid + "clicked!")
     teamIDChosen = teamid;
     var element = <GetTeamInfo />
-    ReactDOM.render(element, document.getElementById("main"))
+    ReactDOM.render(element, document.getElementById("main"));
 }
 
 
@@ -191,7 +191,7 @@ class Site extends React.Component {
                 </div>
 
                 <div id="main">
-                    Main
+                    <Main />
                 </div>
 
                 <div id="footer">
@@ -207,6 +207,14 @@ class Menu extends React.Component {
         return (
             <GetSports />
         );
+    }
+}
+
+class Main extends React.Component {
+    render() {
+        return(
+            <h3>Välkommen till MonkeySports!</h3>
+        )
     }
 }
 
