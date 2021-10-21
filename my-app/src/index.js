@@ -1,8 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Logo from './img/logoB.png';
 
+<<<<<<< HEAD
 var sportIDChosen = 0;
 var teamIDChosen = 0;
 
@@ -56,6 +57,8 @@ class GetTeamInfo extends React.Component {
     }
 
 }
+=======
+>>>>>>> 2f00592d050ef6be1db90e41f610b0672d49ab22
 
 class GetTeams extends React.Component {
     constructor(props,sportid) {
@@ -65,6 +68,7 @@ class GetTeams extends React.Component {
             isLoaded: false,
             items: []
         };
+        this.handleBack=this.handleBack.bind(this);
     }
 
     componentDidMount() {
@@ -88,7 +92,9 @@ class GetTeams extends React.Component {
                 }
             )
     }
-
+    handleBack(){
+        this.props.history.goBack();
+    }
     render() {
         const { error, isLoaded, teams } = this.state;
         if (error) {
@@ -206,9 +212,13 @@ class Site extends React.Component {
 }
 
 class Menu extends React.Component {
+    constructor(props){
+        super(props);
+    }
+    
     render() {
         return (
-            <GetSports />
+           <GetSports />
         );
     }
 }
