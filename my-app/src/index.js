@@ -100,7 +100,7 @@ class GetSports extends React.Component {
                 <ul>
                     <h2>Välj en sport:</h2>
                 {sports.map(sport => ( //Skriver ut sporten och kör funktionen GayAlert när list itemet klickas på
-                    <a onClick={()=> GayAlert(sport.id)}><li key={sport.id}>
+                    <a onClick={()=> clickSports(sport.id)}><li key={sport.id}>
                       {sport.name}
                     </li></a>
                   ))}
@@ -112,7 +112,7 @@ class GetSports extends React.Component {
 }
 
 //kom ihåg att ta bort denna; nej
-function GayAlert(sportid) {
+function clickSports(sportid) {
     alert(sportid);
     const element = <GetTeams />;
     ReactDOM.render(element, document.getElementById('menu_container'));
