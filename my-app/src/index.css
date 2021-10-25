@@ -54,7 +54,7 @@
   width: 15rem;
 }
 body{
-  color: #EDF5E1;
+  color: #f4f5e1;
 }
 ul {
   list-style-type: none;
@@ -68,12 +68,12 @@ li {
   margin: 10px;
   background-color: #45af75;
   text-transform: uppercase;
-  color: #EDF5E1;
+  color: #f4f5e1;
   font-family: 'Lato', sans-serif;
   font-size: 16px;
 }
 li:hover {
-  background-color: rgb(101, 153, 185);
+  background-color: #379683;
 }
 a{
   text-decoration: none;
