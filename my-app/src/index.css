@@ -43,6 +43,14 @@
   min-height: 38rem;
 
 }
+#eventMain{
+  background-color: #05386B;
+  text-align: center;
+  font-size: 25px;
+  padding: 0px;
+  margin: 0;
+
+}
 #footer{
   background-color: #05386B;
   text-align: center;
