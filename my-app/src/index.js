@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Logo from './img/logoB.png';
+import Logo from './img/logoW.png';
 
 var sportIDChosen = 0;
 var teamIDChosen = 0;
