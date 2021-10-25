@@ -5,6 +5,7 @@ import Logo from './img/logoB.png';
 
 var sportIDChosen = 0;
 var teamIDChosen = 0;
+var leagueIDChosen = 0;
 
 
 class GetTeamInfo extends React.Component {
@@ -88,7 +89,7 @@ class GetTeams extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://api.everysport.com/v1/teams?apikey=26192887ec48f76ab54167238ae16688" + "&sport=" + sportIDChosen)
+        fetch("http://api.everysport.com/v1/leagues/"+leagueIDChosen+"/teams?apikey=26192887ec48f76ab54167238ae16688")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -120,7 +121,9 @@ class GetTeams extends React.Component {
         } else {
             return (
                 <ul>
+                    <a href="#" onClick={() => clickTeamBack()}><li> Tillbaka </li></a>
                     <h2>Välj ett lag:</h2>
+                    
                     {teams.map(team => (
 
                         /* Vår version */
@@ -128,8 +131,72 @@ class GetTeams extends React.Component {
                             {team.name}
                         </li></a>
                         
+                        /* Åkes Version 
+                        <a onClick={() => this.props.setTeamId(team.id)}><li key={team.id}>
+                            {team.name}
+                        </li></a>
+                        */
+                    ))}
+                </ul>
+            );
+        }
+    }
 
+}
 
+class GetLeagues extends React.Component {
+    constructor(props, sportid) {
+        super(props);
+        this.state = {
+            error: null,
+            isLoaded: false,
+            items: []
+        };
+        this.handleBack = this.handleBack.bind(this);
+    }
+
+    componentDidMount() {
+        fetch("http://api.everysport.com/v1/leagues?apikey=26192887ec48f76ab54167238ae16688" + "&sport=" + sportIDChosen)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        leagues: result.leagues
+                    });
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+    }
+    handleBack() {
+        this.props.history.goBack();
+    }
+    render() {
+        const { error, isLoaded, leagues } = this.state;
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <div>Loading...</div>;
+        } else {
+            return (
+                <ul>
+                    <a href="#" onClick={() => clickLeagueBack()}><li>Tillbaka</li></a>
+                    <h2>Välj en liga:</h2>
+                    {leagues.map(league => (
+
+                        /* Vår version */
+                        <a href="#" onClick={() => clickLeagues(league.id)}><li className="leagueList" key={league.id}>
+                            {league.name + " "+ league.startDate.substring(0,4)} 
+                        </li></a>
+                        
                         /* Åkes Version 
                         <a onClick={() => this.props.setTeamId(team.id)}><li key={team.id}>
                             {team.name}
@@ -198,9 +265,25 @@ class GetSports extends React.Component {
 }
 
 //kom ihåg att ta bort denna; nej
-function clickSports(sportid) {
-    sportIDChosen = sportid;
+function clickTeamBack() {
+    ReactDOM.unmountComponentAtNode(document.getElementById("menu_container"))
+    ReactDOM.unmountComponentAtNode(document.getElementById("main"))
+    var element = <GetLeagues />
+    ReactDOM.render(element, document.getElementById('menu_container'));
+}
+function clickLeagueBack() {
+    ReactDOM.unmountComponentAtNode(document.getElementById("menu_container"))
+
+    var element = <GetSports />
+    ReactDOM.render(element, document.getElementById('menu_container'));
+}
+
+function clickLeagues(leagueid) {
+    leagueIDChosen = leagueid;
+
+    ReactDOM.unmountComponentAtNode(document.getElementById("menu_container"))
     var element = <GetTeams />
+
     ReactDOM.render(element, document.getElementById('menu_container'));
 }
 
@@ -213,7 +296,14 @@ function clickTeams(teamid) {
     ReactDOM.render(element, document.getElementById("main"));
 }
 
+function clickSports(sportid) {
+    sportIDChosen = sportid;
 
+    ReactDOM.unmountComponentAtNode(document.getElementById("menu_container"))
+    var element = <GetLeagues />
+
+    ReactDOM.render(element, document.getElementById('menu_container'));
+}
 
 class Site extends React.Component {
     render() {
