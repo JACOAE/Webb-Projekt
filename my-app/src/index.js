@@ -50,23 +50,17 @@ class GetEvents extends React.Component {
         } else if (!isLoaded) {
             return <div>Loading...</div>;
         } else {
-            alert("Oh no!")
             return (
                 <ul>
 
                     {events.map(event => (
 
                         /* Vår version */
-                        <a href="#" onClick={() => clickTeams(event.id)}><li className="eventList" key={event.id}>
-                            {event.homeTeam.name},
-                            {event.visitingTeam.name}
-                        </li></a>
+                        <li className="eventList" key={event.id}>
+                            {event.homeTeam.name} {event.homeTeamScore} - {event.visitingTeamScore} {event.visitingTeam.name}
+                            <h4>{event.startDate.substring(0,10)}</h4>
+                        </li>
 
-                        /* Åkes Version 
-                        <a onClick={() => this.props.setTeamId(team.id)}><li key={team.id}>
-                            {team.name}
-                        </li></a>
-                        */
                     ))}
                 </ul>
             );
@@ -137,8 +131,10 @@ class GetTeamInfo extends React.Component {
                 <div>
                     <h3>{team.name}</h3>
                     <img src={team.logo} alt="Lagets logga" height="200" />
-
+                
+                    <GetEvents />
                 </div>
+                
             )
         }
     }
@@ -363,10 +359,6 @@ function clickTeams(teamid) {
 
     ReactDOM.render(element, document.getElementById("main"));
 
-    ReactDOM.unmountComponentAtNode(document.getElementById("eventMain"))
-    var element = <GetEvents />
-
-    ReactDOM.render(element, document.getElementById("eventMain"));
 }
 
 function clickSports(sportid) {
@@ -392,8 +384,9 @@ class Site extends React.Component {
 
                 <div id="main">
                     <Main />
-                    <div id="eventMain"></div>
                 </div>
+
+                
 
                 <div id="footer">
                     MonkeySports AB (William Tiderman, Jacob Eriksson och John Engblom)
@@ -421,8 +414,18 @@ class Main extends React.Component {
             <div>
                 <h2>Välkommen till MonkeySports!</h2>
                 <div id="eventMain">
-
+                    <EventMain />
                 </div>
+            </div>
+        )
+    }
+}
+
+class EventMain extends React.Component {
+    render() {
+        return (
+            <div>
+                <h3>Välj ett lag för att se deras matcher</h3>
             </div>
         )
     }
