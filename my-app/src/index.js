@@ -8,6 +8,73 @@ var teamIDChosen = 0;
 var leagueIDChosen = 0;
 
 
+class GetEvents extends React.Component {
+    constructor(props, sportid) {
+        super(props);
+        this.state = {
+            error: null,
+            isLoaded: false,
+            items: []
+        };
+        this.handleBack = this.handleBack.bind(this);
+    }
+
+    componentDidMount() {
+        fetch("http://api.everysport.com/v1/leagues/"+leagueIDChosen+"/events?apikey=26192887ec48f76ab54167238ae16688" +"&team=" + teamIDChosen)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        events: result.events
+                    });
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+    }
+    handleBack() {
+        this.props.history.goBack();
+    }
+    render() {
+        const { error, isLoaded, events } = this.state;
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <div>Loading...</div>;
+        } else {
+            alert("Oh no!")
+            return (
+                <ul>
+
+                    {events.map(event => (
+
+                        /* Vår version */
+                        <a href="#" onClick={() => clickTeams(event.id)}><li className="eventList" key={event.id}>
+                            {event.homeTeam.name},
+                            {event.visitingTeam.name}
+                        </li></a>
+
+                        /* Åkes Version 
+                        <a onClick={() => this.props.setTeamId(team.id)}><li key={team.id}>
+                            {team.name}
+                        </li></a>
+                        */
+                    ))}
+                </ul>
+            );
+        }
+    }
+
+}
+
 class GetTeamInfo extends React.Component {
     constructor(props) {
         super(props);
@@ -18,10 +85,10 @@ class GetTeamInfo extends React.Component {
             isLoaded: false,
             items: [],
         };
-        
+
     }
 
-
+    //fetch("http://api.everysport.com/v1/events/?apikey=26192887ec48f76ab54167238ae16688" +"&sport=" + sportIDChosen + "&league=" + leagueIDChosen + "&team=" + teamIDChosen))
 
     setTeamId(teamID) {
         teamIDChosen = teamID;
@@ -39,8 +106,8 @@ class GetTeamInfo extends React.Component {
                     (result) => {
                         this.setState({
                             isLoaded: true,
-                            team: result.team
-
+                            team: result.team,
+                            //events: result.events
                         });
 
                     },
@@ -54,12 +121,12 @@ class GetTeamInfo extends React.Component {
                         });
                     }
                 )
-        }  
+        }
     }
 
 
     render() {
-        const { error, isLoaded, team } = this.state;
+        const { error, isLoaded, team, events } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -70,6 +137,7 @@ class GetTeamInfo extends React.Component {
                 <div>
                     <h3>{team.name}</h3>
                     <img src={team.logo} alt="Lagets logga" height="200" />
+
                 </div>
             )
         }
@@ -89,7 +157,7 @@ class GetTeams extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://api.everysport.com/v1/leagues/"+leagueIDChosen+"/teams?apikey=26192887ec48f76ab54167238ae16688")
+        fetch("http://api.everysport.com/v1/leagues/" + leagueIDChosen + "/teams?apikey=26192887ec48f76ab54167238ae16688")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -123,14 +191,14 @@ class GetTeams extends React.Component {
                 <ul>
                     <a href="#" onClick={() => clickTeamBack()}><li> Tillbaka </li></a>
                     <h2>Välj ett lag:</h2>
-                    
+
                     {teams.map(team => (
 
                         /* Vår version */
                         <a href="#" onClick={() => clickTeams(team.id)}><li className="teamList" key={team.id}>
                             {team.name}
                         </li></a>
-                        
+
                         /* Åkes Version 
                         <a onClick={() => this.props.setTeamId(team.id)}><li key={team.id}>
                             {team.name}
@@ -194,9 +262,9 @@ class GetLeagues extends React.Component {
 
                         /* Vår version */
                         <a href="#" onClick={() => clickLeagues(league.id)}><li className="leagueList" key={league.id}>
-                            {league.name + " "+ league.startDate.substring(0,4)} 
+                            {league.name + " " + league.startDate.substring(0, 4)}
                         </li></a>
-                        
+
                         /* Åkes Version 
                         <a onClick={() => this.props.setTeamId(team.id)}><li key={team.id}>
                             {team.name}
@@ -294,6 +362,11 @@ function clickTeams(teamid) {
     var element = <GetTeamInfo />
 
     ReactDOM.render(element, document.getElementById("main"));
+
+    ReactDOM.unmountComponentAtNode(document.getElementById("eventMain"))
+    var element = <GetEvents />
+
+    ReactDOM.render(element, document.getElementById("eventMain"));
 }
 
 function clickSports(sportid) {
@@ -319,6 +392,7 @@ class Site extends React.Component {
 
                 <div id="main">
                     <Main />
+                    <div id="eventMain"></div>
                 </div>
 
                 <div id="footer">
@@ -344,7 +418,12 @@ class Menu extends React.Component {
 class Main extends React.Component {
     render() {
         return (
-            <h2>Välkommen till MonkeySports!</h2>
+            <div>
+                <h2>Välkommen till MonkeySports!</h2>
+                <div id="eventMain">
+
+                </div>
+            </div>
         )
     }
 }
