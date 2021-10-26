@@ -14,38 +14,31 @@
     'footer footer footer footer footer footer';
   background-color: #2196F3;
   grid-gap: 1px;
-  width: 80%;
   margin:auto;
-  max-height: 90%;
+  height:99vh;
 }
 #header{
   background-color: #05386B;
   text-align: center;
   font-size: 25px;
-  padding: 25px;
+  padding: 2vh;
+  height: fit-content;
 }
 #menu_container{
   background-color: #05386B;
   text-align: center;
   font-size: 25px;
-  padding: 25px;
+  padding: 2vh;
   overflow: auto;
-  max-height: 38rem;
-  min-width: 8rem;
   font-family: 'Lato', sans-serif;
-  
-
 }
 #main{
   background-color: #05386B;
   text-align: center;
   font-size: 25px;
-  padding: 25px;
-  min-height: 38rem;
+  padding: 2vh;
   font-family: 'Lato', sans-serif;
-  max-height: 38rem;
   overflow: auto;
-
 }
 #eventMain{
   background-color: #05386B;
@@ -53,25 +46,30 @@
   font-size: 25px;
   padding: 0px;
   margin: 0;
-
+  overflow: auto;
+  height: inherit;
 }
 #footer{
   background-color: #05386B;
   text-align: center;
   font-family: 'Lato', sans-serif;
   font-size: 14px;
-  padding: 25px;
+  height: fit-content;
+  border-top: 1px #2196F3;
+}
+#footerText {
+  margin-top: 1vh;
 }
 #headerLogo{
   width: 15rem;
 }
 body{
   color: #f4f5e1;
+  background-color: #05386B;
 }
 ul {
   list-style-type: none;
   text-align: center;
-  margin-right: 10%;
 }
 li {
   border: 1px black solid;
@@ -84,6 +82,9 @@ li {
   font-family: 'Lato', sans-serif;
   font-size: 16px;
 }
+.menuList{
+  margin-right: 10%;
+}
 li:hover {
   background-color: #379683;
 }
@@ -94,6 +95,6 @@ h2, h1 {
   font-family: 'Lato', sans-serif;
 }
 .teamList{
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

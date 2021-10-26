@@ -184,7 +184,7 @@ class GetTeams extends React.Component {
             return <div>Loading...</div>;
         } else {
             return (
-                <ul>
+                <ul class='menuList'>
                     <a href="#" onClick={() => clickTeamBack()}><li> Tillbaka </li></a>
                     <h2>Välj ett lag:</h2>
 
@@ -314,7 +314,7 @@ class GetSports extends React.Component {
             return <div>Loading...</div>;
         } else {
             return (
-                <ul>
+                <ul class='menuList'>
                     <h2>Välj en sport:</h2>
                     {sports.map(sport => ( //Skriver ut sporten och kör funktionen clickSports när list itemet klickas på
                         <a href="#" onClick={() => clickSports(sport.id)}><li key={sport.id}>
@@ -389,7 +389,7 @@ class Site extends React.Component {
                 
 
                 <div id="footer">
-                    MonkeySports AB (William Tiderman, Jacob Eriksson och John Engblom)
+                    <p id="footerText">MonkeySports AB (William Tiderman, Jacob Eriksson och John Engblom)</p>
                 </div>
             </div>
         );
