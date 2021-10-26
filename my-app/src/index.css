@@ -15,7 +15,7 @@
   background-color: #2196F3;
   grid-gap: 1px;
   margin:auto;
-  height:99vh;
+  height:98vh;
 }
 #header{
   background-color: #05386B;
@@ -47,7 +47,7 @@
   padding: 0px;
   margin: 0;
   overflow: auto;
-  height: inherit;
+  height: 100vh;
 }
 #footer{
   background-color: #05386B;
@@ -58,7 +58,7 @@
   border-top: 1px #2196F3;
 }
 #footerText {
-  margin-top: 1vh;
+  margin-top: 2vh;
 }
 #headerLogo{
   width: 15rem;
