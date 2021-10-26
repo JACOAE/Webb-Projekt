@@ -6,6 +6,66 @@ import Logo from './img/logoW.png';
 var sportIDChosen = 0;
 var teamIDChosen = 0;
 var leagueIDChosen = 0;
+var eventIDChosen = 0;
+
+class GetEventInfo extends React.Component {
+    constructor(props, sportid) {
+        super(props);
+        this.state = {
+            error: null,
+            isLoaded: false,
+            items: []
+        };
+        this.handleBack = this.handleBack.bind(this);
+    }
+
+    componentDidMount() {
+        fetch("http://api.everysport.com/v1/events/" + eventIDChosen + "?apikey=26192887ec48f76ab54167238ae16688")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        event: result.event
+                    });
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+    }
+    handleBack() {
+        this.props.history.goBack();
+    }
+    render() {
+        const { error, isLoaded, event } = this.state;
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <div>Loading...</div>;
+        } else {
+
+            //alert(event.gameEvents.length());
+
+            return (
+                <div>
+                    <h3>{event.homeTeam.name} - {event.visitingTeam.name} </h3>
+                    <h4>{event.startDate.substring(0, 10)}</h4>
+                    <h4>{event.homeTeamScore} - {event.visitingTeamScore}</h4>
+
+
+                </div>
+            );
+        }
+    }
+
+}
 
 
 class GetEvents extends React.Component {
@@ -20,7 +80,7 @@ class GetEvents extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://api.everysport.com/v1/leagues/"+leagueIDChosen+"/events?apikey=26192887ec48f76ab54167238ae16688" +"&team=" + teamIDChosen)
+        fetch("http://api.everysport.com/v1/leagues/" + leagueIDChosen + "/events?apikey=26192887ec48f76ab54167238ae16688" + "&team=" + teamIDChosen)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -54,13 +114,10 @@ class GetEvents extends React.Component {
                 <ul>
 
                     {events.map(event => (
-
-                        /* Vår version */
-                        <li className="eventList" key={event.id}>
+                        <a href="#" onClick={() => clickEvent(event.id)}><li className="eventList" key={event.id}>
                             {event.homeTeam.name} {event.homeTeamScore} - {event.visitingTeamScore} {event.visitingTeam.name}
-                            <h4>{event.startDate.substring(0,10)}</h4>
-                        </li>
-
+                            <h4>{event.startDate.substring(0, 10)}</h4>
+                        </li></a>
                     ))}
                 </ul>
             );
@@ -131,10 +188,10 @@ class GetTeamInfo extends React.Component {
                 <div>
                     <h3>{team.name}</h3>
                     <img src={team.logo} alt="Lagets logga" height="200" />
-                
+
                     <GetEvents />
                 </div>
-                
+
             )
         }
     }
@@ -331,8 +388,13 @@ class GetSports extends React.Component {
 //kom ihåg att ta bort denna; nej
 function clickTeamBack() {
     ReactDOM.unmountComponentAtNode(document.getElementById("menu_container"))
+
+
     ReactDOM.unmountComponentAtNode(document.getElementById("main"))
-    var element = <GetLeagues />
+    var element = <Main />
+    ReactDOM.render(element, document.getElementById("main"));
+
+    element = <GetLeagues />
     ReactDOM.render(element, document.getElementById('menu_container'));
 }
 function clickLeagueBack() {
@@ -340,6 +402,13 @@ function clickLeagueBack() {
 
     var element = <GetSports />
     ReactDOM.render(element, document.getElementById('menu_container'));
+}
+function clickEvent(eventid){
+    eventIDChosen = eventid;
+    ReactDOM.unmountComponentAtNode(document.getElementById("main"));
+
+    var element = <GetEventInfo />
+    ReactDOM.render(element, document.getElementById('main'))
 }
 
 function clickLeagues(leagueid) {
@@ -386,7 +455,7 @@ class Site extends React.Component {
                     <Main />
                 </div>
 
-                
+
 
                 <div id="footer">
                     <p id="footerText">MonkeySports AB (William Tiderman, Jacob Eriksson och John Engblom)</p>
