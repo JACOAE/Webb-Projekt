@@ -46,7 +46,7 @@
   font-size: 25px;
   padding: 0px;
   margin: 0;
-  overflow: auto;
+  overflow: hidden;
   height: 100vh;
 }
 #footer{
@@ -55,7 +55,6 @@
   font-family: 'Lato', sans-serif;
   font-size: 14px;
   height: fit-content;
-  border-top: 1px #2196F3;
 }
 #footerText {
   margin-top: 2vh;

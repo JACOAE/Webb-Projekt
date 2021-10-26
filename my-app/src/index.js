@@ -58,8 +58,7 @@ class GetEventInfo extends React.Component {
                     <h3>{event.homeTeam.name} - {event.visitingTeam.name} </h3>
                     <h4>{event.startDate.substring(0, 10)}</h4>
                     <h4>{event.homeTeamScore} - {event.visitingTeamScore}</h4>
-
-
+                    <div id="eventMain"></div>
                 </div>
             );
         }
@@ -494,7 +493,7 @@ class EventMain extends React.Component {
     render() {
         return (
             <div>
-                <h3>Välj ett lag för att se deras matcher</h3>
+                <h4>Välj ett lag för att se deras matcher</h4>
             </div>
         )
     }
