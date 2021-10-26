@@ -39,6 +39,8 @@
   padding: 2vh;
   font-family: 'Lato', sans-serif;
   overflow: auto;
+  position: relative;
+  
 }
 #eventMain{
   background-color: #05386B;
@@ -46,8 +48,8 @@
   font-size: 25px;
   padding: 0px;
   margin: 0;
-  overflow: hidden;
   height: 100vh;
+  overflow: hidden;
 }
 #footer{
   background-color: #05386B;
@@ -97,3 +99,40 @@ h2, h1 {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+.eventList{
+  width: 60%; 
+  margin:auto;
+  position:relative;
+  overflow:hidden;
+  right:2%;
+}
+.eventListPictureHome{
+  width: 15%;
+  height: 70%;
+  position: absolute;
+  left:5%;
+  top:10%;
+}
+.eventListPictureVisiting{
+  width: 15%;
+  height: 70%;
+  position: absolute;
+  left:80%;
+  top:10%;
+}
+.eventPictureHome{
+  position: absolute;
+  width: 15%;
+  left:10%;
+  top:5%;
+  height: 30%;
+  
+}
+.eventPictureVisiting{
+  position: absolute;
+  width: 15%;
+  height: 30%;
+  right:10%;
+  top:5%;
+}
+

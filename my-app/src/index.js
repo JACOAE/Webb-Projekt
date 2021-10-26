@@ -51,13 +51,24 @@ class GetEventInfo extends React.Component {
             return <div>Loading...</div>;
         } else {
 
-            //alert(event.gameEvents.length());
-
+            /*{event.gameEvents.map(gameEvent => (
+                <li className="eventList" key={gameEvent.id}>
+                <h4>{gameEvent.id}</h4>
+            </li>
+            ))}*/
+            
             return (
                 <div>
                     <h3>{event.homeTeam.name} - {event.visitingTeam.name} </h3>
                     <h4>{event.startDate.substring(0, 10)}</h4>
                     <h4>{event.homeTeamScore} - {event.visitingTeamScore}</h4>
+                    <h1>{event.liveScore}</h1>
+                    <img className="eventPictureHome" src={event.homeTeam.logo} alt="HemmaLagets logga" />
+                    <img className="eventPictureVisiting" src={event.visitingTeam.logo} alt="BortaLagets logga" />
+                    
+                    
+
+
                     <div id="eventMain"></div>
                 </div>
             );
@@ -110,15 +121,20 @@ class GetEvents extends React.Component {
             return <div>Loading...</div>;
         } else {
             return (
-                <ul>
+                <div id = "eventMain" style={{ height: '100%' } }>
+                    <ul>
 
-                    {events.map(event => (
-                        <a href="#" onClick={() => clickEvent(event.id)}><li className="eventList" key={event.id}>
-                            {event.homeTeam.name} {event.homeTeamScore} - {event.visitingTeamScore} {event.visitingTeam.name}
-                            <h4>{event.startDate.substring(0, 10)}</h4>
-                        </li></a>
-                    ))}
-                </ul>
+                        {events.map(event => (
+                            <a href="#" onClick={() => clickEvent(event.id)}><li className="eventList" key={event.id}>
+                                <p>{event.homeTeam.name} - {event.visitingTeam.name}</p>
+                                <p>{event.homeTeamScore} - {event.visitingTeamScore} </p>
+                                <img className="eventListPictureHome" src={event.homeTeam.logo} alt="HemmaLagets logga" />
+                                <img className="eventListPictureVisiting" src={event.visitingTeam.logo} alt="BortaLagets logga" />
+                                <h4>{event.startDate.substring(0, 10)}</h4>
+                            </li></a>
+                        ))}
+                    </ul>
+                </div>
             );
         }
     }
@@ -184,7 +200,8 @@ class GetTeamInfo extends React.Component {
         } else {
             return (
                 //<GetTeams setTeamId = {this.setTeamId} />
-                <div>
+                //
+                <div id="main" style={{ overflow: 'auto' } }>
                     <h3>{team.name}</h3>
                     <img src={team.logo} alt="Lagets logga" height="200" />
 
@@ -402,7 +419,7 @@ function clickLeagueBack() {
     var element = <GetSports />
     ReactDOM.render(element, document.getElementById('menu_container'));
 }
-function clickEvent(eventid){
+function clickEvent(eventid) {
     eventIDChosen = eventid;
     ReactDOM.unmountComponentAtNode(document.getElementById("main"));
 
@@ -421,6 +438,11 @@ function clickLeagues(leagueid) {
 
 function clickTeams(teamid) {
     teamIDChosen = teamid;
+
+    //var sheet = document.getElementById('index').sheet
+    //var css_rules_num = sheet.cssRules.length;
+
+    //sheet.insertRule("#main { overflow:auto; }", css_rules_num);
 
     ReactDOM.unmountComponentAtNode(document.getElementById("main"))
     var element = <GetTeamInfo />
