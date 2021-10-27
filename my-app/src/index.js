@@ -9,7 +9,7 @@ var leagueIDChosen = 0;
 var eventIDChosen = 0;
 
 class GetEventInfo extends React.Component {
-    constructor(props, sportid) {
+    constructor(props) {
         super(props);
         this.state = {
             error: null,
@@ -38,16 +38,14 @@ class GetEventInfo extends React.Component {
                         error
                     });
                 }
-            )
+            );
     }
     handleBack() {
         this.props.history.goBack();
     }
     render() {
-        const { error, isLoaded, event } = this.state;
-        if (error) {
-            return <div>Error: {error.message}</div>;
-        } else if (!isLoaded) {
+        const { isLoaded, event } = this.state;
+        if (!isLoaded) {
             return <div>Loading...</div>;
         } else {
 
