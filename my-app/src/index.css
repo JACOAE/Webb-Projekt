@@ -21,14 +21,14 @@
   background-color: #05386B;
   text-align: center;
   font-size: 25px;
-  padding: 2vh;
+  padding: 1.5vh;
   height: fit-content;
 }
 #menu_container{
   background-color: #05386B;
   text-align: center;
   font-size: 25px;
-  padding: 2vh;
+  padding: 1vh;
   overflow: auto;
   font-family: 'Lato', sans-serif;
 }
@@ -36,7 +36,6 @@
   background-color: #05386B;
   text-align: center;
   font-size: 25px;
-  padding: 2vh;
   font-family: 'Lato', sans-serif;
   overflow: auto;
   position: relative;
@@ -95,45 +94,39 @@ a{
 h2, h1 {
   font-family: 'Lato', sans-serif;
 }
-.teamList{
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
 .eventList{
-  width: 60%; 
+  width: 90%; 
   margin:auto;
   position:relative;
   overflow:hidden;
   right:2%;
 }
 .eventListPictureHome{
-  width: 15%;
-  height: 70%;
+  height: 80%;
   position: absolute;
   left:5%;
   top:10%;
+  max-width: 20%;
 }
 .eventListPictureVisiting{
-  width: 15%;
-  height: 70%;
+  height: 80%;
   position: absolute;
-  left:80%;
+  right:5%;
   top:10%;
+  max-width: 20%;
 }
 .eventPictureHome{
   position: absolute;
-  width: 15%;
   left:10%;
-  top:5%;
-  height: 30%;
+  top:10%;
+  height: 10vw;
   
 }
 .eventPictureVisiting{
   position: absolute;
-  width: 15%;
-  height: 30%;
+  height: 10vw;
   right:10%;
-  top:5%;
+  top:10%;
 }
 
 #eventBackButton{
