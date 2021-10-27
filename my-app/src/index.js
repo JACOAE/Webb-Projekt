@@ -8,6 +8,9 @@ var teamIDChosen = 0;
 var leagueIDChosen = 0;
 var eventIDChosen = 0;
 
+const API_KEY = "?apikey=26192887ec48f76ab54167238ae16688";
+
+
 class GetEventInfo extends React.Component {
     constructor(props) {
         super(props);
@@ -20,7 +23,7 @@ class GetEventInfo extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://api.everysport.com/v1/events/" + eventIDChosen + "?apikey=26192887ec48f76ab54167238ae16688")
+        fetch("http://api.everysport.com/v1/events/" + eventIDChosen + API_KEY)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -85,7 +88,7 @@ class GetEvents extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://api.everysport.com/v1/leagues/" + leagueIDChosen + "/events?apikey=26192887ec48f76ab54167238ae16688" + "&team=" + teamIDChosen)
+        fetch("http://api.everysport.com/v1/leagues/" + leagueIDChosen + "/events"+ API_KEY + "&team=" + teamIDChosen)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -161,7 +164,7 @@ class GetTeamInfo extends React.Component {
 
         }
         else {
-            fetch("http://api.everysport.com/v1/teams/" + teamIDChosen + "?apikey=26192887ec48f76ab54167238ae16688")
+            fetch("http://api.everysport.com/v1/teams/" + teamIDChosen + API_KEY)
                 .then(res => res.json())
                 .then(
                     (result) => {
@@ -221,7 +224,7 @@ class GetTeams extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://api.everysport.com/v1/leagues/" + leagueIDChosen + "/teams?apikey=26192887ec48f76ab54167238ae16688")
+        fetch("http://api.everysport.com/v1/leagues/" + leagueIDChosen + "/teams" +API_KEY)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -288,7 +291,7 @@ class GetLeagues extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://api.everysport.com/v1/leagues?apikey=26192887ec48f76ab54167238ae16688" + "&sport=" + sportIDChosen)
+        fetch("http://api.everysport.com/v1/leagues" +API_KEY + "&sport=" + sportIDChosen)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -353,7 +356,7 @@ class GetSports extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://api.everysport.com/v1/sports?apikey=26192887ec48f76ab54167238ae16688")
+        fetch("http://api.everysport.com/v1/sports"+ API_KEY)
             .then(res => res.json())
             .then(
                 (result) => {
