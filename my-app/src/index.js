@@ -59,16 +59,13 @@ class GetEventInfo extends React.Component {
             
             return (
                 <div>
-                    <h3>{event.homeTeam.name} - {event.visitingTeam.name} </h3>
+                    <a href="#" onClick={() => clickEventBack()}><h4 id="eventBackButton">Tillbaka</h4></a>
+                    <h4>{event.homeTeam.name} - {event.visitingTeam.name} </h4>
                     <h4>{event.startDate.substring(0, 10)}</h4>
                     <h4>{event.homeTeamScore} - {event.visitingTeamScore}</h4>
                     <h1>{event.liveScore}</h1>
                     <img className="eventPictureHome" src={event.homeTeam.logo} alt="HemmaLagets logga" />
                     <img className="eventPictureVisiting" src={event.visitingTeam.logo} alt="BortaLagets logga" />
-                    
-                    
-
-
                     <div id="eventMain"></div>
                 </div>
             );
@@ -130,7 +127,7 @@ class GetEvents extends React.Component {
                                 <p>{event.homeTeamScore} - {event.visitingTeamScore} </p>
                                 <img className="eventListPictureHome" src={event.homeTeam.logo} alt="HemmaLagets logga" />
                                 <img className="eventListPictureVisiting" src={event.visitingTeam.logo} alt="BortaLagets logga" />
-                                <h4>{event.startDate.substring(0, 10)}</h4>
+                                <p>{event.startDate.substring(0, 10)}</p>
                             </li></a>
                         ))}
                     </ul>
@@ -412,6 +409,13 @@ function clickTeamBack() {
 
     element = <GetLeagues />
     ReactDOM.render(element, document.getElementById('menu_container'));
+}
+function clickEventBack() {
+    ReactDOM.unmountComponentAtNode(document.getElementById("main"))
+
+
+    var element = <GetTeamInfo />
+    ReactDOM.render(element, document.getElementById('main'));
 }
 function clickLeagueBack() {
     ReactDOM.unmountComponentAtNode(document.getElementById("menu_container"))

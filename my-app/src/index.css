@@ -136,3 +136,22 @@ h2, h1 {
   top:5%;
 }
 
+#eventBackButton{
+  border: 1px black solid;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  margin: auto;
+  background-color: #45af75;
+  text-transform: uppercase;
+  color: #f4f5e1;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  width:20%;
+  padding: 10px;
+}
+#eventBackButton:hover {
+  background-color: #379683;
+}
+
+
+
