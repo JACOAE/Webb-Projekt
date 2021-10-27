@@ -95,7 +95,7 @@ h2, h1 {
   font-family: 'Lato', sans-serif;
 }
 .eventList{
-  width: 80%; 
+  width: 90%; 
   margin:auto;
   position:relative;
   overflow:hidden;
@@ -106,14 +106,14 @@ h2, h1 {
   position: absolute;
   left:5%;
   top:10%;
-  max-width: 25%;
+  max-width: 20%;
 }
 .eventListPictureVisiting{
   height: 80%;
   position: absolute;
   right:5%;
   top:10%;
-  max-width: 25%;
+  max-width: 20%;
 }
 .eventPictureHome{
   position: absolute;
