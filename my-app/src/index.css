@@ -41,6 +41,15 @@
   position: relative;
   
 }
+#main h2, #main h3, #main h4 {
+  margin-top: 2rem;
+}
+#main li {
+  margin-bottom: 0.5rem;
+}
+#bigTeamLogo {
+  margin: 2rem;
+}
 #eventMain{
   background-color: #05386B;
   text-align: center;
