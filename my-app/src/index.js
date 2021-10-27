@@ -200,7 +200,7 @@ class GetTeamInfo extends React.Component {
                 //
                 <div id="main" style={{ overflow: 'auto' } }>
                     <h3>{team.name}</h3>
-                    <img src={team.logo} alt="Lagets logga" height="200" />
+                    <img id="bigTeamLogo" src={team.logo} alt="Lagets logga" height="200" />
 
                     <GetEvents />
                 </div>
