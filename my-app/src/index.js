@@ -269,11 +269,6 @@ class GetTeams extends React.Component {
                             {team.name}
                         </li></a>
 
-                        /* Åkes Version 
-                        <a onClick={() => this.props.setTeamId(team.id)}><li key={team.id}>
-                            {team.name}
-                        </li></a>
-                        */
                     ))}
                 </ul>
             );
@@ -334,12 +329,6 @@ class GetLeagues extends React.Component {
                         <a href="#" onClick={() => clickLeagues(league.id)}><li className="leagueList" key={league.id}>
                             {league.name + " " + league.startDate.substring(0, 4)}
                         </li></a>
-
-                        /* Åkes Version 
-                        <a onClick={() => this.props.setTeamId(team.id)}><li key={team.id}>
-                            {team.name}
-                        </li></a>
-                        */
                     ))}
                 </ul>
             );
