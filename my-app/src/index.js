@@ -63,7 +63,9 @@ class GetEventInfo extends React.Component {
                     <a href="#" onClick={() => clickEventBack()}><h4 id="eventBackButton">Tillbaka</h4></a>
                     <h4>{event.homeTeam.name} - {event.visitingTeam.name} </h4>
                     <h4>{event.startDate.substring(0, 10)}</h4>
+                    <p>{event.startDate.substring(11, 16)}</p>
                     <h4>{event.homeTeamScore} - {event.visitingTeamScore}</h4>
+                    
                     <h1>{event.liveScore}</h1>
                     <img className="eventPictureHome" src={event.homeTeam.logo} alt="HemmaLagets logga" />
                     <img className="eventPictureVisiting" src={event.visitingTeam.logo} alt="BortaLagets logga" />
@@ -129,6 +131,7 @@ class GetEvents extends React.Component {
                                 <img className="eventListPictureHome" src={event.homeTeam.logo} alt="HemmaLagets logga" />
                                 <img className="eventListPictureVisiting" src={event.visitingTeam.logo} alt="BortaLagets logga" />
                                 <p>{event.startDate.substring(0, 10)}</p>
+
                             </li></a>
                         ))}
                     </ul>
